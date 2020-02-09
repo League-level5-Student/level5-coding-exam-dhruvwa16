@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 
 public class CodingExamB {
 	/*
@@ -15,20 +16,32 @@ public class CodingExamB {
 	 */
 	
 	
-	public static String getLoggingInfo(String fileName) {
+	public static String getLoggingInfo(String fileName) throws IOException {
 		/*
 		 * 1. Complete the getLoggingInfoMethod.
 		 *    The method takes in a String for a file and returns a String. 
-		 *    The method will open the file a read through it. It will then 
+		 *    The method will open the file and read through it. It will then 
 		 *    take all the comments that begin with //TODO: and combine them 
 		 *    into one large String. The string will also state the file name and
 		 *    the line number for where each TODO was found. 
 		*/
-		
-		return "";
+		//This is hard
+		String comments = "";
+		try {
+			FileReader fr = new FileReader(fileName);
+			int c = fr.read();
+			if(c != -1) {
+				System.out.println((char) c);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return comments;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		String finalLogString = getLoggingInfo("src/Coding_Exam_B/classes/Camera.java");
 		finalLogString += getLoggingInfo("src/Coding_Exam_B/classes/RayTracedImageViewer.java");
 		finalLogString += getLoggingInfo("src/Coding_Exam_B/classes/RayTracer.java");

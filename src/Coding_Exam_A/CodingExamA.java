@@ -34,10 +34,11 @@ public class CodingExamA {
 		frame.setSize(2000,2000);
 		for (int i = 0; i < robots; i++) {
 			robot[i] = new Robot();
-			if(color == "red") {
+			Robot r = robot[i]; 
+			if(color.equals("red")) {
 				robot[i].setPenColor(Color.RED);
 			}
-			else if(color == "green") {
+			else if(color.equals("green")) {
 				robot[i].setPenColor(Color.GREEN);
 			}
 			else {
@@ -45,38 +46,44 @@ public class CodingExamA {
 			}
 			robot[i].penDown();
 			robot[i].setSpeed(100);
-			robot[i].setX(i * 200 + 100);
-			robot[i].setY(i * 100 + 100);
+			robot[i].setX(i*50 +100);
+			robot[i].setY(500);
+			Thread t = new Thread(()-> {
+				 for (int j = 0; j < sides; j++) {
+					r.move(40);
+					r.turn(360/sides);
+				}
+				 r.move(40);
+				 r.move(10000);
+			});
+			t.start();
 		}
-		Thread t = new Thread(()-> {
-			 for (int i = 0; i < sides; i++) {
-				robot[0].move(40);
-				robot[0].turn(360/sides);
-			}
-		});
-		Thread t2 = new Thread(()-> {
-			 for (int i = 0; i < sides; i++) {
-				robot[1].move(40);
-				robot[1].turn(360/sides);
-			}
-		});
-		Thread t3 = new Thread(()-> {
-			 for (int i = 0; i < sides; i++) {
-				robot[2].move(40);
-				robot[2].turn(360/sides);
-			}
-		});
-		Thread t4 = new Thread(()-> {
-			 for (int i = 0; i < sides; i++) {
-				robot[3].move(40);
-				robot[3].turn(360/sides);
-			}
-		});
+	
+//		Thread t = new Thread(()-> {
+//			 for (int i = 0; i < sides; i++) {
+//				robot[0].move(40);
+//				robot[0].turn(360/sides);
+//			}
+//		});
+//		Thread t2 = new Thread(()-> {
+//			 for (int i = 0; i < sides; i++) {
+//				robot[1].move(40);
+//				robot[1].turn(360/sides);
+//			}
+//		});
+//		Thread t3 = new Thread(()-> {
+//			 for (int i = 0; i < sides; i++) {
+//				robot[2].move(40);
+//				robot[2].turn(360/sides);
+//			}
+//		});
+//		Thread t4 = new Thread(()-> {
+//			 for (int i = 0; i < sides; i++) {
+//				robot[3].move(40);
+//				robot[3].turn(360/sides);
+//			}
+//		});
 		
-		t.start();
-		t2.start();
-		t3.start();
-		t4.start();
 		
 	}
 
